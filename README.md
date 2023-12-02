@@ -23,4 +23,4 @@ $ npm run build
 
 ## Project Preview
 
-![Project Preview](/public/project-img/currentPreview.png)
+![Project Preview](/public/project-img/projectPreview.png)
