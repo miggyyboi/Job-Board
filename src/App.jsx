@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import JobCard from './assets/components/JobCard';
-import JobView from './assets/components/JobView';
-import SearchBar from './assets/components/SearchBar';
-import Header from './assets/components/Header';
-import ResultsBar from './assets/components/JobResults';
-import Pagination from './assets/components/Pagination';
+import JobCard from './components/JobCard';
+import JobView from './components/JobView';
+import SearchBar from './components/SearchBar';
+import Header from './components/Header';
+import ResultsBar from './components/JobResults';
+import Pagination from './components/Pagination';
 
 export default function App() {
   const [selectedId, setSelectedId] = useState('');
