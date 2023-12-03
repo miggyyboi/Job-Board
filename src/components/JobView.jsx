@@ -12,6 +12,7 @@ import { BASE_API_URL } from '../constants/constants.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { addJob } from './jobSlice.js';
 import { useDataContext } from '../context/DataContext.jsx';
+import Button from '../ui/Button.jsx';
 
 function JobView({ selectedId }) {
   const [jobView, setJobView] = useState({});
@@ -147,12 +148,11 @@ function JobView({ selectedId }) {
         </div>
       </section>
       <section className="absolute right-0 top-[-20px] mr-4 mt-8 flex items-center justify-end space-x-2">
-        <button className="flex items-center rounded-lg bg-slate-200 px-2 py-1 text-sm shadow-sm transition-transform hover:scale-[102%]">
+        <Button>
           <a href={companyURL}>Apply &nbsp;</a> <FaArrowUpRightFromSquare />
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => addToBookMark()}
-          className="flex items-center rounded-lg bg-slate-200 px-2 py-1 text-sm shadow-sm transition-transform hover:scale-[102%]"
         >
           <p>Bookmark &nbsp;</p>
           <FaBookmark
@@ -160,7 +160,7 @@ function JobView({ selectedId }) {
               bookmarked.includes(true) ? 'text-blue-600' : 'text-black'
             }`}
           />
-        </button>
+        </Button>
       </section>
     </div>
   );

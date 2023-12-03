@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa6';
 import { useDataContext } from '../context/DataContext';
+import Button from '../ui/Button';
 
 function JobResults() {
   const [relevancy, setRelevancy] = useState(false);
@@ -36,20 +37,16 @@ function JobResults() {
         <span className="font-bold">{data.length}</span> results
       </p>
       <div className="flex space-x-2">
-        <button
-          disabled={data.length === 0}
-          onClick={setFilterRelevance}
-          className="flex items-center gap-1 rounded-md bg-slate-200 px-2 py-1 text-xs"
-        >
-          Relevant {relevancy ? <FaArrowDown /> : <FaArrowUp />}
-        </button>
-        <button
-          disabled={data.length === 0}
-          onClick={setFilterRecent}
-          className="flex items-center gap-1 rounded-md bg-slate-200 px-2 py-1 text-xs"
-        >
-          Recent {recency ? <FaArrowDown /> : <FaArrowUp />}
-        </button>
+        {data?.length !== 0 && (
+          <>
+            <Button onClick={setFilterRelevance}>
+              Relevant {relevancy ? <FaArrowDown /> : <FaArrowUp />}
+            </Button>
+            <Button onClick={setFilterRecent}>
+              Recent {recency ? <FaArrowDown /> : <FaArrowUp />}
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );
