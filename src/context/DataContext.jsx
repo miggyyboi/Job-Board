@@ -7,6 +7,7 @@ const DataContext = createContext();
 function DataContextProvider({ children }) {
   const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchJobBoard = async () => {
@@ -27,8 +28,6 @@ function DataContextProvider({ children }) {
     fetchJobBoard();
   }, [searchValue]);
 
-  const [currentPage, setCurrentPage] = useState(1);
-
   function getPages() {
     const from = (currentPage - 1) * RESULTS_PER_SEARCH;
     const to = from + RESULTS_PER_SEARCH;
@@ -38,11 +37,11 @@ function DataContextProvider({ children }) {
   const { from, to } = getPages();
   const totalPages = Math.ceil(data.length / RESULTS_PER_SEARCH);
 
-  const setPage = (page) => {
+  function setPage(page) {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
-  };
+  }
 
   const nextPage = () => setPage(currentPage + 1);
   const prevPage = () => setPage(currentPage - 1);

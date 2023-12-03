@@ -11,15 +11,6 @@ function Header({ children, handleSelect }) {
         <p>jobBoard</p>
       </div>
 
-      {openBookmark && (
-        <div
-          className="absolute right-[10px] top-44 z-50 rounded-md bg-white"
-          id="bookmarks"
-        >
-          <BookmarkList handleSelect={handleSelect} />
-        </div>
-      )}
-
       {children}
       <div className="mr-[20px] mt-2 flex h-8 w-[820px] justify-end font-primary text-sm text-white">
         <div className="flex w-32 items-center justify-center space-x-1 rounded-md bg-blue-600">
@@ -31,6 +22,7 @@ function Header({ children, handleSelect }) {
           </p>
         </div>
       </div>
+      {openBookmark && <BookmarkList handleSelect={handleSelect} />}
     </div>
   );
 }

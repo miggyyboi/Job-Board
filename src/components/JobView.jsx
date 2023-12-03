@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
@@ -8,16 +7,19 @@ import {
   FaMoneyBill,
   FaRegClock,
 } from 'react-icons/fa6';
-import { BASE_API_URL } from '../constants/constants.js';
 import { useDispatch, useSelector } from 'react-redux';
-import { addJob } from './jobSlice.js';
+import { BASE_API_URL } from '../constants/constants.js';
 import { useDataContext } from '../context/DataContext.jsx';
 import Button from '../ui/Button.jsx';
+import { addJob } from './jobSlice.js';
 
 function JobView({ selectedId }) {
   const [jobView, setJobView] = useState({});
-
   const dispatch = useDispatch();
+
+  function addToBookMark() {
+    dispatch(addJob(selectedId));
+  }
 
   useEffect(() => {
     async function fetchSelectedJob() {
@@ -50,13 +52,8 @@ function JobView({ selectedId }) {
   const { data } = useDataContext();
   const bookmarks = useSelector((store) => store.jobBoard.bookmarks);
   const bookmarked = data.map((item) => bookmarks.includes(item.id));
-  console.log(bookmarked.map((item) => item));
-
+  // console.log(bookmarked.map((item) => item));
   // console.log(selectedId);
-
-  function addToBookMark() {
-    dispatch(addJob(selectedId));
-  }
 
   return (
     <div className="relative h-full rounded-xl bg-[#eff2f5]">

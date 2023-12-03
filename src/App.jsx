@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import JobCard from './components/JobCard';
+import JobResults from './components/JobResults';
 import JobView from './components/JobView';
 import SearchBar from './components/SearchBar';
 import Header from './components/Header';
-import ResultsBar from './components/JobResults';
+import JobResultsHeader from './components/JobResultsHeader';
 import Pagination from './components/Pagination';
 
 export default function App() {
@@ -23,10 +23,8 @@ export default function App() {
         <div className="mx-auto flex max-w-6xl items-center justify-center rounded-lg bg-white p-4 font-primary ">
           <div className="grid grid-cols-[0.6fr_1fr]">
             <div className="min-h-[616px] min-w-[420px]">
-              <ResultsBar />
-              <ul>
-                <JobCard handleSelect={handleSelect} />
-              </ul>
+              <JobResultsHeader />
+              <JobResults handleSelect={handleSelect} />
               <Pagination />
             </div>
             <div className="min-h-[616px] min-w-[700px] px-2">
