@@ -11,8 +11,8 @@ Search specific jobs. With Pagination, Bookmark, and Filter (Relevance/Recency) 
 
 ### Features
 - Search jobs
-- Bookmark jobs (Persisted using Redux Persit)
-- Filter jobs (By relevance/recent)
+- Bookmark jobs (Persisted using Redux Toolkit Persist)
+- Filter jobs (By relevance/recency)
 - Paginated pages
 
 
