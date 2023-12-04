@@ -1,4 +1,4 @@
-import { useDataContext } from '../context/DataContext';
+import { useDataContext } from '../../context/DataContext';
 import JobCards from './JobCards';
 
 function JobResults({ handleSelect }) {

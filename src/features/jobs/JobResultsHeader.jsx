@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa6';
-import { useDataContext } from '../context/DataContext';
-import Button from '../ui/Button';
+import { useDataContext } from '../../context/DataContext';
+import Button from '../../ui/Button';
 
 function JobResultsHeader() {
   const [relevancy, setRelevancy] = useState(false);

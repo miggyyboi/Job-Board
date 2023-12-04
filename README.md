@@ -1,6 +1,12 @@
-# Job Board (Under extensive development/progress)
+# Job Board
 
-Search specific jobs - A practice project. With Pagination, Bookmark, and Filter (Relevance/Recency) functionality. PS: Still under development -- some code may not be of best practice.
+Search specific jobs. With Pagination, Bookmark, and Filter (Relevance/Recency) functionality. PS: Some code alteration alteration will be made in the future; to perfect code readability and conciseness.
+
+# Features
+- Search jobs
+- Bookmark jobs (Persisted using Redux Persit)
+- Filter jobs (By relevance/recent)
+- Paginated pages
 
 ### Built with
 
@@ -9,17 +15,6 @@ Search specific jobs - A practice project. With Pagination, Bookmark, and Filter
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [Tailwind CSS](https://tailwindcss.com/)
-
-```bash
-# install dependencies
-$ npm install
-
-# run at your localhost
-$ npm run dev
-
-# build for production
-$ npm run build
-```
 
 ## Project Preview
 

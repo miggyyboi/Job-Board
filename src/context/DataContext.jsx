@@ -58,6 +58,7 @@ function DataContextProvider({ children }) {
         prevPage,
         paginatedResults,
         currentPage,
+        totalPages,
       }}
     >
       {children}

@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import JobResults from './components/JobResults';
-import JobView from './components/JobView';
-import SearchBar from './components/SearchBar';
-import Header from './components/Header';
-import JobResultsHeader from './components/JobResultsHeader';
-import Pagination from './components/Pagination';
+import JobResultsHeader from './features/jobs/JobResultsHeader';
+import JobResults from './features/jobs/JobResults';
+import JobView from './features/jobs/JobView';
+import Header from './features/header/Header';
+import SearchBar from './ui/SearchBar';
+import Pagination from './ui/Pagination';
 
 export default function App() {
   const [selectedId, setSelectedId] = useState('');
@@ -14,7 +14,7 @@ export default function App() {
   }
 
   return (
-    <div className="max-h-screen bg-[#dee3e9]">
+    <div className="bg-[#dee3e9]">
       <Header handleSelect={handleSelect}>
         <SearchBar />
       </Header>

@@ -1,24 +1,28 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import {
-  FaArrowUpRightFromSquare,
-  FaBookmark,
-  FaLocationPin,
-  FaMoneyBill,
-  FaRegClock,
-} from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
-import { BASE_API_URL } from '../constants/constants.js';
-import { useDataContext } from '../context/DataContext.jsx';
-import Button from '../ui/Button.jsx';
-import { addJob } from './jobSlice.js';
+import { addJob, removeJob } from './jobSlice.js';
+import { BASE_API_URL } from '../../constants/constants.js';
+import axios from 'axios';
+import { FaArrowUpRightFromSquare, FaBookmark } from 'react-icons/fa6';
+import QualificationCards from './QualificationCards.jsx';
+import ReviewCards from './ReviewCards.jsx';
+import JobDetails from './JobDetails.jsx';
+import Button from '../../ui/Button.jsx';
 
 function JobView({ selectedId }) {
+  const reduxStore = useSelector((store) => store.jobBoard.bookmarks);
+  const [isBookmarked, setIsBookMarked] = useState(reduxStore);
   const [jobView, setJobView] = useState({});
   const dispatch = useDispatch();
 
   function addToBookMark() {
-    dispatch(addJob(selectedId));
+    if (isBookmarked.includes(selectedId)) {
+      dispatch(removeJob());
+      setIsBookMarked((prev) => prev.filter((item) => item !== selectedId));
+    } else {
+      dispatch(addJob(selectedId));
+      setIsBookMarked((prev) => [...prev, selectedId]);
+    }
   }
 
   useEffect(() => {
@@ -49,12 +53,6 @@ function JobView({ selectedId }) {
     title,
   } = jobView;
 
-  const { data } = useDataContext();
-  const bookmarks = useSelector((store) => store.jobBoard.bookmarks);
-  const bookmarked = data.map((item) => bookmarks.includes(item.id));
-  // console.log(bookmarked.map((item) => item));
-  // console.log(selectedId);
-
   return (
     <div className="relative h-full rounded-xl bg-[#eff2f5]">
       <section className="relative" id="jHeader">
@@ -81,28 +79,17 @@ function JobView({ selectedId }) {
               <div className="text-xs text-slate-500">
                 <p>
                   Job posted{' '}
-                  {daysAgo === 1 ? daysAgo + ' day ago' : daysAgo + ' days ago'}
+                  {daysAgo <= 1 ? daysAgo + ' day ago' : daysAgo + ' days ago'}
                 </p>
               </div>
               <div className="mr-4 flex space-x-4">
-                <p className="flex items-center">
-                  <span className="mr-2 rounded-full bg-slate-300 p-1">
-                    <FaRegClock />
-                  </span>
-                  <p className="text-sm">{duration}</p>
-                </p>
-                <p className="flex items-center">
-                  <span className="mr-2 rounded-full bg-slate-300 p-1">
-                    <FaMoneyBill />
-                  </span>
-                  <p className="text-sm">{salary}</p>
-                </p>
-                <p className="flex items-center">
-                  <span className="mr-2 rounded-full bg-slate-300 p-1">
-                    <FaLocationPin />
-                  </span>
-                  <p className="text-sm">{location}</p>
-                </p>
+                <JobDetails
+                  duration={duration}
+                  salary={salary}
+                  location={location}
+                  key={title}
+                  size="sm"
+                />
               </div>
             </div>
           </div>
@@ -114,13 +101,8 @@ function JobView({ selectedId }) {
               <p className="text-sm">Other qualifications may apply</p>
             </div>
             <ul className="flex flex-wrap gap-2">
-              {qualifications.map((skill, i) => (
-                <li
-                  className="gap-2 rounded-lg bg-slate-200 p-2 text-sm"
-                  key={i}
-                >
-                  {skill}
-                </li>
+              {qualifications.map((qualifications, i) => (
+                <QualificationCards qualifications={qualifications} key={i} />
               ))}
             </ul>
           </div>
@@ -131,14 +113,10 @@ function JobView({ selectedId }) {
                 Recent reviews from current and former employees
               </p>
             </div>
+
             <ul className="grid grid-cols-2 gap-2">
-              {reviews.map((skill, i) => (
-                <li
-                  className="rounded-xl bg-slate-200 p-2 text-sm italic"
-                  key={i}
-                >
-                  &quot;{skill}&quot;
-                </li>
+              {reviews.map((reviews, i) => (
+                <ReviewCards reviews={reviews} key={i} />
               ))}
             </ul>
           </div>
@@ -148,13 +126,11 @@ function JobView({ selectedId }) {
         <Button>
           <a href={companyURL}>Apply &nbsp;</a> <FaArrowUpRightFromSquare />
         </Button>
-        <Button
-          onClick={() => addToBookMark()}
-        >
+        <Button onClick={() => addToBookMark(selectedId)}>
           <p>Bookmark &nbsp;</p>
           <FaBookmark
             className={`${
-              bookmarked.includes(true) ? 'text-blue-600' : 'text-black'
+              isBookmarked.includes(selectedId) ? 'text-blue-600' : 'text-black'
             }`}
           />
         </Button>
