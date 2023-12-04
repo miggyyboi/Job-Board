@@ -1,6 +1,6 @@
 # Job Board
 
-Search specific jobs. With Pagination, Bookmark, and Filter (Relevance/Recency) functionality. PS: Some code alteration alteration will be made in the future; to perfect code readability and conciseness.
+Search specific jobs. With Pagination, Bookmark, and Filter (Relevance/Recency) functionality. PS: Some code alteration will be made in the future; to perfect code readability and conciseness.
 
 ### Built with
 - [Vite](https://vitejs.dev/)
@@ -16,6 +16,5 @@ Search specific jobs. With Pagination, Bookmark, and Filter (Relevance/Recency) 
 - Paginated pages
 
 
-## Project Preview
-
+### Project Preview
 ![Project Preview](/public/project-img/projectPreview.png)
